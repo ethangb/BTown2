@@ -8,14 +8,16 @@
         :root { --primary: #1b3d16; --accent: #2ecc71; --bg: #0a0a0a; --card: #151515; --text: #ffffff; --snap: #e6e300; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
         header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--primary); background: linear-gradient(180deg, #1b3d16 0%, #0a0a0a 100%); }
-        .min-order { color: var(--accent); font-weight: bold; display: block; margin-top: 10px; font-size: 0.8rem; }
         .container { max-width: 1000px; margin: auto; padding: 20px; }
         .category-header { background: var(--primary); padding: 12px; border-radius: 8px; margin: 30px 0 15px 0; font-weight: 800; border-left: 5px solid var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
         .product-card { background: var(--card); border-radius: 12px; padding: 15px; border: 1px solid #222; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        /* 4-BUTTON GRID FOR FLOWER */
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
         .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; }
         .opt-btn:hover { background: var(--accent); color: #000; }
+        
         .price { font-size: 1.4rem; color: var(--accent); font-weight: 800; }
         .add-btn { background: var(--accent); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; }
         .cart-footer { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,10,0.98); border-top: 2px solid var(--primary); padding: 20px; z-index: 1000; }
@@ -26,18 +28,22 @@
 
 <header>
     <h1>BtownGas</h1>
-    <span class="min-order">Delivery: $60+ | Pickup: $30+</span>
+    <div style="color: var(--accent); font-weight: bold; margin-top: 10px; font-size: 0.8rem;">Delivery: $60+ | Pickup: $30+</div>
 </header>
 
 <div class="container">
     <div class="category-header">🌸 Flower ($130oz)</div>
     <div id="flower-grid" class="grid"></div>
+
     <div class="category-header">🛒 Carts & Disposables</div>
     <div id="cart-grid" class="grid"></div>
+
     <div class="category-header">🍯 Concentrates</div>
     <div id="concentrate-grid" class="grid"></div>
+
     <div class="category-header">🍬 Edibles</div>
     <div id="edible-grid" class="grid"></div>
+
     <div class="category-header">🚬 Nic & Prerolls</div>
     <div id="nic-grid" class="grid"></div>
 </div>
@@ -52,7 +58,7 @@
 
 <script>
     const products = [
-        // FLOWER - Bad items (Cinderella, Superboof, etc.) removed
+        // FLOWER -
         {cat:'flower', name:'Grape Gas', desc:'Hybrid', img:'assets/grape-gas.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'Cream Smoothie', desc:'Hybrid', img:'assets/cream-smoothie.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'White Walker', desc:'Hybrid', img:'assets/white-walker.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
@@ -61,17 +67,21 @@
         {cat:'flower', name:'Animal Cookies', desc:'Hybrid', img:'assets/animal-cookies.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'Frozen Cherries', desc:'Hybrid', img:'assets/frozen-cherries.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
 
-        // CARTS
+        // CARTS - Restored
         {cat:'cart', name:'Whole Melt 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/whole-melt.png'},
         {cat:'cart', name:'Big Chief 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/big-chief.png'},
 
-        // CONCENTRATES
+        // CONCENTRATES - Restored
         {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Extract', img:'assets/sugars.png'},
         {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Extract', img:'assets/badders.png'},
 
-        // EDIBLES
+        // EDIBLES - Restored
         {cat:'edible', name:'Deja Vu Muddy Buddies', price:5, desc:'1000mg', img:'assets/muddy-buddies.png'},
-        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Nano', img:'assets/gallon.png'}
+        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Nano', img:'assets/gallon.png'},
+
+        // NIC & PREROLLS - Restored
+        {cat:'nic', name:'BC800', price:35, desc:'Disposable Nic', img:'assets/bc800.png'},
+        {cat:'nic', name:'Coastal Maine Preroll', price:10, desc:'1g Dispensary', img:'assets/coastal.png'}
     ];
 
     function init() {
@@ -89,6 +99,7 @@
             grid.appendChild(card);
         });
     }
+    
     let cart = []; let total = 0;
     function add(n, p) { 
         cart.push(n); total += p; 
