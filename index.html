@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BtownGas | Menu</title>
+    <title>BtownGas | Full Menu</title>
     <style>
         :root { --primary: #1b3d16; --accent: #2ecc71; --bg: #0a0a0a; --card: #151515; --text: #ffffff; --snap: #e6e300; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
@@ -16,7 +16,7 @@
         
         /* 4-BUTTON GRID FOR FLOWER */
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
-        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; }
+        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
         .opt-btn:hover { background: var(--accent); color: #000; }
         
         .price { font-size: 1.4rem; color: var(--accent); font-weight: 800; }
@@ -55,28 +55,36 @@
 
 <script>
     const products = [
-    // FLOWER - Using the 4-button grid layout
-    {cat: 'flower', name: 'Grape Gas', desc: 'Hybrid ($130oz)', img: 'assets/grape-gas.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-    {cat: 'flower', name: 'Cream Smoothie', desc: 'Hybrid ($130oz)', img: 'assets/cream-smoothie.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-    {cat: 'flower', name: 'White Walker', desc: 'Hybrid ($130oz)', img: 'assets/white-walker.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-    {cat: 'flower', name: 'Acai Berry', desc: 'Hybrid ($130oz)', img: 'assets/acai-berry.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-    {cat: 'flower', name: 'Cinderella 99', desc: 'Sativa ($130oz)', img: 'assets/cindy.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+        // FLOWER - Only items with working pictures
+        {cat:'flower', name:'Grape Gas', desc:'Hybrid', img:'assets/grape-gas.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Cream Smoothie', desc:'Hybrid', img:'assets/cream-smoothie.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'White Walker', desc:'Hybrid', img:'assets/white-walker.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Acai Berry', desc:'Hybrid', img:'assets/acai-berry.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Blue Lobster', desc:'Indoor', img:'assets/blue-lobster.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Animal Cookies', desc:'Hybrid', img:'assets/animal-cookies.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Frozen Cherries', desc:'Hybrid', img:'assets/frozen-cherries.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
 
-    // CARTS (Only confirmed pictures)
-    {cat: 'cart', name: 'Whole Melt 2g Dual', price: 40, desc: 'Liquid Diamonds', img: 'assets/whole-melt.png'},
-    {cat: 'cart', name: 'Big Chief 2g Dual', price: 40, desc: 'Liquid Diamonds', img: 'assets/big-chief.png'},
+        // CARTS
+        {cat:'cart', name:'Whole Melt 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/whole-melt.png'},
+        {cat:'cart', name:'Big Chief 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/big-chief.png'},
+        {cat:'cart', name:'Deja Vu 1g Resin', price:35, desc:'Live Resin', img:'assets/dejavu-resin.png'},
+        {cat:'cart', name:'Cadillac .5g Cart', price:35, desc:'Live Resin', img:'assets/cadillac.png'},
+        {cat:'cart', name:'Deja Vu 2g Dual', price:40, desc:'Digital Count', img:'assets/dejavu-dual.png'},
 
-    // CONCENTRATES
-    {cat: 'concentrate', name: 'Maine Live Sugars', price: 35, desc: 'Premium Extract', img: 'assets/sugars.png'},
-    {cat: 'concentrate', name: 'Maine Live Badders', price: 40, desc: 'Premium Extract', img: 'assets/badders.png'},
+        // CONCENTRATES
+        {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Extract', img:'assets/sugars.png'},
+        {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Extract', img:'assets/badders.png'},
 
-    // EDIBLES
-    {cat: 'edible', name: 'Deja Vu Muddy Buddies', price: 5, desc: '1000mg', img: 'assets/muddy-buddies.png'},
-    {cat: 'edible', name: 'THC Gallon', price: 50, desc: '10,000mg Nano', img: 'assets/gallon.png'},
+        // EDIBLES
+        {cat:'edible', name:'Deja Vu Muddy Buddies', price:5, desc:'1000mg', img:'assets/muddy-buddies.png'},
+        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Nano', img:'assets/gallon.png'},
 
-    // NIC & PREROLLS
-    {cat: 'nic', name: 'BC800', price: 35, desc: 'Disposable Nic', img: 'assets/bc800.png'},
-    {cat: 'nic', name: 'Coastal Maine Preroll', price: 10, desc: '1g Dispensary', img: 'assets/coastal.png'}
+        // NIC & PREROLLS - Restored Geek Bars, Adjust, and Craze
+        {cat:'nic', name:'Geek Bar 25k', price:40, desc:'Disposable Nic', img:'assets/geekbar.png'},
+        {cat:'nic', name:'Adjust 40k Mycool', price:40, desc:'Disposable Nic', img:'assets/adjust.png'},
+        {cat:'nic', name:'Craze disposable', price:40, desc:'Disposable Nic', img:'assets/craze.png'},
+        {cat:'nic', name:'BC800', price:35, desc:'Disposable Nic', img:'assets/bc800.png'},
+        {cat:'nic', name:'Coastal Maine Preroll', price:10, desc:'1g Dispensary', img:'assets/coastal.png'}
     ];
 
     function init() {
@@ -94,7 +102,7 @@
             grid.appendChild(card);
         });
     }
-    
+
     let cart = []; let total = 0;
     function add(n, p) { 
         cart.push(n); total += p; 
