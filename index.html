@@ -5,206 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BtownGas | Full Menu</title>
     <style>
-        :root {
-            --primary: #1b3d16; 
-            --accent: #2ecc71;  
-            --bg: #0a0a0a;      
-            --card: #151515;    
-            --text: #ffffff;
-            --snap: #e6e300;
-        }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
+        :root { --primary: #1b3d16; --accent: #2ecc71; --bg: #0a0a0a; --card: #151515; --text: #ffffff; --snap: #e6e300; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
         header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--primary); background: linear-gradient(180deg, #1b3d16 0%, #0a0a0a 100%); }
-        h1 { font-size: 3rem; margin: 0; color: #fff; letter-spacing: -1px; }
-        
-        .instruction-box { background: var(--snap); color: #000; padding: 20px; margin: 20px auto; max-width: 800px; border-radius: 12px; font-weight: 800; text-align: center; border: 4px solid #000; box-shadow: 0 0 20px rgba(46, 204, 113, 0.2); }
-        .min-order { color: var(--accent); font-weight: bold; margin-top: 10px; letter-spacing: 1px; display: block; text-align: center; text-transform: uppercase; }
-        
+        .min-order { color: var(--accent); font-weight: bold; display: block; margin-top: 10px; font-size: 0.8rem; }
         .container { max-width: 1000px; margin: auto; padding: 20px; }
-        .category-header { background: var(--primary); padding: 12px 20px; border-radius: 8px; margin: 40px 0 20px 0; font-size: 1.4rem; font-weight: 800; border-left: 6px solid var(--accent); }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-        .product-card { background: var(--card); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #222; transition: 0.2s; position: relative; }
-        .product-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .product-card.sold-out { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
-        .sold-out-badge { position: absolute; top: 10px; right: 10px; background: #ff0000; color: #fff; padding: 5px 10px; border-radius: 4px; font-weight: 900; z-index: 10; font-size: 0.8rem; transform: rotate(5deg); border: 2px solid #fff; }
-        
-        .name { font-size: 1.1rem; font-weight: bold; margin: 0; }
-        .desc { font-size: 0.85rem; color: #999; margin: 5px 0 15px 0; min-height: 2.5em; }
-        .price-row { display: flex; flex-direction: column; gap: 10px; }
+        .category-header { background: var(--primary); padding: 12px; border-radius: 8px; margin: 30px 0 15px 0; font-weight: 800; border-left: 5px solid var(--accent); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .product-card { background: var(--card); border-radius: 12px; padding: 15px; border: 1px solid #222; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        .sold-out { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
+        .sold-out-badge { position: absolute; top: 10px; right: 10px; background: red; color: white; padding: 5px 10px; font-weight: 900; border-radius: 4px; font-size: 0.7rem; }
         .price { font-size: 1.4rem; color: var(--accent); font-weight: 800; }
-        
-        .options-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-top: 10px; }
-        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .opt-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-        
-        .add-btn { background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-
-        .cart-footer { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,10,0.98); border-top: 2px solid var(--primary); padding: 25px; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.5); }
-        #cart-preview { font-size: 1rem; color: var(--snap); text-align: center; margin-bottom: 12px; font-weight: 800; text-transform: uppercase; }
-        .cart-main { display: flex; justify-content: space-between; max-width: 900px; margin: auto; align-items: center; }
-        .total-box { font-size: 1.8rem; font-weight: 900; }
-        .order-btn { background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .order-btn:hover { background: var(--snap); }
-        
-        @media (max-width: 600px) { h1 { font-size: 2.5rem; } .grid { grid-template-columns: 1fr; } }
+        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 8px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; }
+        .add-btn { background: var(--accent); color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .cart-footer { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,10,0.98); border-top: 2px solid var(--primary); padding: 20px; z-index: 1000; }
+        .order-btn { background: #fff; color: #000; padding: 12px 24px; border-radius: 8px; font-weight: 900; cursor: pointer; border: none; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>BtownGas</h1>
-    <span class="min-order">Min Order Delivery: $60 | Min Order Pickup: $30</span>
+    <span class="min-order">Delivery: $60+ | Pickup: $30+</span>
 </header>
 
-    <div class="container">
-    <div class="instruction-box">
-        📝 HOW TO ORDER:<br>
-        1. Add items to your bag<br>
-        2. Select "DELIVERY" or "PICKUP"<br>
-        3. Take a SCREENSHOT of the total & send the list to me!<br>
-        💬 Text me about flavors for Carts & Nic (flavors shown in pictures)
-    </div>
-
-    <div class="category-header">🌸 Premium Flower ($20)</div>
-    <div class="grid" id="flower-grid"></div>
-
+<div class="container">
+    <div class="category-header">🌸 Flower ($130oz)</div>
+    <div id="flower-grid" class="grid"></div>
     <div class="category-header">🛒 Carts & Disposables</div>
-    <div class="grid" id="cart-grid"></div>
-
+    <div id="cart-grid" class="grid"></div>
     <div class="category-header">🍯 Concentrates</div>
-    <div class="grid" id="concentrate-grid"></div>
-
+    <div id="concentrate-grid" class="grid"></div>
     <div class="category-header">🍬 Edibles & Pantry</div>
-    <div class="grid" id="edible-grid"></div>
-
-    <div class="category-header">🚬 Prerolls & Nicotine</div>
-    <div class="grid" id="nic-grid"></div>
+    <div id="edible-grid" class="grid"></div>
+    <div class="category-header">🚬 Nic & Prerolls</div>
+    <div id="nic-grid" class="grid"></div>
 </div>
 
-    <div class="cart-footer">
-    <div id="cart-preview">Your bag is empty</div>
-    <div class="cart-main">
-        <div class="total-box">Total: $<span id="total">0</span></div>
-        <div style="display: flex; gap: 10px;">
-            <button class="order-btn" onclick="copyOrder('Delivery')">🚚 DELIVERY</button>
-            <button class="order-btn" onclick="copyOrder('Pickup')">🥡 PICKUP</button>
-        </div>
+<div class="cart-footer">
+    <div id="cart-preview" style="text-align:center; color:var(--snap); margin-bottom:10px; font-weight:bold; font-size:0.9rem;">Bag is empty</div>
+    <div style="display: flex; justify-content: space-between; max-width: 900px; margin: auto; align-items: center;">
+        <div style="font-size: 1.6rem; font-weight: 900;">Total: $<span id="total">0</span></div>
+        <button class="order-btn" onclick="copyOrder()">📋 COPY ORDER</button>
     </div>
 </div>
 
 <script>
     const products = [
         // FLOWER
-        {cat: 'flower', name: 'Grape Gas', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809369086.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Cream Smoothie', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809382458.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'White Walker', price: 30, desc: 'Hybrid Licensed Maine ($130oz)', img: 'attached_assets/image_1767809389502.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Acai Berry', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809393989.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Pink Runtz', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809398954.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Strawberry Pie', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809404493.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Blue Lobster', price: 30, desc: 'Licensed Maine Indoor ($130oz)', img: 'attached_assets/image_1767809410155.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Animal Cookies', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809418316.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Frozen Cherries', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809429442.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Blueberry Gumbo', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809369086.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Superboof', price: 30, desc: 'Licensed Maine Hybrid ($130oz)', img: 'attached_assets/image_1767809382458.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Candy Store', price: 30, desc: 'Licensed Maine Indoor ($130oz)', img: 'attached_assets/image_1767809389502.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Modified Grapes', price: 30, desc: 'Indica ($130oz)', img: 'attached_assets/image_1767809393989.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
-        {cat: 'flower', name: 'Cinderella 99', price: 30, desc: 'Sativa ($130oz)', img: 'attached_assets/image_1767809398954.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+        {cat:'flower', name:'Grape Gas', desc:'130oz Hybrid', img:'assets/grape-gas.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Cream Smoothie', desc:'130oz Hybrid', img:'assets/cream-smoothie.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'White Walker', desc:'130oz Hybrid', img:'assets/white-walker.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Acai Berry', desc:'130oz Hybrid', img:'assets/acai-berry.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Pink Runtz', desc:'130oz Hybrid', img:'assets/pink-runtz.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Strawberry Pie', desc:'130oz Hybrid', img:'assets/strawberry-pie.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Blue Lobster', desc:'130oz Hybrid', img:'assets/blue-lobster.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Animal Cookies', desc:'130oz Hybrid', img:'assets/animal-cookies.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Frozen Cherries', desc:'130oz Hybrid', img:'assets/frozen-cherries.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Blueberry Gumbo', desc:'130oz Hybrid', img:'assets/blueberry-gumbo.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Superboof', desc:'130oz Hybrid', img:'assets/superboof.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Candy Store', desc:'130oz Hybrid', img:'assets/candy-store.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Modified Grapes', desc:'130oz Indica', img:'assets/grapes.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Cinderella 99', desc:'130oz Sativa', img:'assets/cindy.png', options:[{n:'3.5g',p:30},{n:'Oz',p:130}]},
 
         // CARTS
-        {cat: 'cart', name: 'Boutique v5 Triple Chamber', price: 40, desc: 'Liquid Diamond All-in-One', img: 'attached_assets/image_1767808567816.png'},
-        {cat: 'cart', name: 'Whole Melt 2g Dual Chamber', price: 40, desc: 'Liquid Diamonds Live Resin', img: 'attached_assets/image_1767808577870.png'},
-        {cat: 'cart', name: 'Cadillac .5g Cart', price: 35, desc: 'Premium Live Resin', img: 'attached_assets/image_1767808641474.png'},
-        {cat: 'cart', name: 'Deja Vu 1g Live Resin', price: 35, desc: 'High Quality Hardware', img: 'attached_assets/image_1767808603541.png'},
-        {cat: 'cart', name: 'Besos 2g Disposable', price: 40, desc: 'Liquid Diamonds', img: 'attached_assets/image_1767808584411.png', soldOut: true},
-        {cat: 'cart', name: 'Big Chief 2g Dual', price: 40, desc: 'Liquid Diamonds', img: 'attached_assets/image_1767808590902.png'},
-        {cat: 'cart', name: 'Favorites 3g Disposable', price: 40, desc: 'Liquid Diamonds', img: 'attached_assets/image_1767808614032.png', soldOut: true},
-        {cat: 'cart', name: 'Deja Vu 1g Distillate', price: 35, desc: 'New Branded Hardware', img: 'attached_assets/image_1767808603541.png'},
-        {cat: 'cart', name: 'Deja Vu 2g Dual Chamber', price: 40, desc: 'Digital Blinker Count', img: 'attached_assets/image_1767808626516.png'},
+        {cat:'cart', name:'Boutique v5 Triple', price:40, desc:'Sold Out', img:'assets/boutique.png', soldOut:true},
+        {cat:'cart', name:'Besos 2g Disposable', price:40, desc:'Sold Out', img:'assets/besos.png', soldOut:true},
+        {cat:'cart', name:'Favorites 3g Disposable', price:40, desc:'Sold Out', img:'assets/favorites.png', soldOut:true},
+        {cat:'cart', name:'Whole Melt 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/whole-melt.png'},
+        {cat:'cart', name:'Big Chief 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/big-chief.png'},
+        {cat:'cart', name:'Deja Vu 1g Resin', price:35, desc:'High Quality', img:'assets/dejavu-resin.png'},
+        {cat:'cart', name:'Deja Vu 2g Dual', price:40, desc:'Digital Count', img:'assets/dejavu-dual.png'},
+        {cat:'cart', name:'Cadillac .5g Cart', price:35, desc:'Live Resin', img:'assets/cadillac.png'},
 
         // CONCENTRATES
-        {cat: 'concentrate', name: 'Maine Live Resin Sugars', price: 35, desc: 'Rock Candy / Georgia Pie', img: 'attached_assets/image_1767808983193.png'},
-        {cat: 'concentrate', name: 'Maine Live Resin Badders', price: 40, desc: 'GG4 / Purple Punch', img: 'attached_assets/image_1767808988473.png'},
+        {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Premium Extract', img:'assets/sugars.png'},
+        {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Premium Extract', img:'assets/badders.png'},
 
         // EDIBLES
-        {cat: 'edible', name: 'Deja Vu Muddy Buddies', price: 5, desc: '1000mg - All Flavors', img: 'attached_assets/image_1767808767737.png'},
-        {cat: 'edible', name: 'Cheez-Its (Homemade)', price: 5, desc: '600mg - Original or Nashville Hot', img: 'attached_assets/image_1767808840028.png', soldOut: true},
-        {cat: 'edible', name: 'Cheese Puffs / Balls', price: 5, desc: '600mg - Freeze Dried', img: 'attached_assets/image_1767808818117.png', soldOut: true},
-        {cat: 'edible', name: 'THC Ketchup / BBQ', price: 15, desc: '1000mg Sauce Bottle', img: 'attached_assets/image_1767808846223.png', soldOut: true},
-        {cat: 'edible', name: 'Full Spectrum PB', price: 15, desc: '1000mg 4oz Jar', img: 'attached_assets/image_1767808782729.png', soldOut: true},
-        {cat: 'edible', name: 'Wildflower Honey', price: 15, desc: '1200mg Jar with Dipper', img: 'attached_assets/image_1767808808094.png', soldOut: true},
-        {cat: 'edible', name: 'Jolly Rancher Cubes', price: 5, desc: '600mg Infused', img: 'attached_assets/image_1767808862293.png', soldOut: true},
-        {cat: 'edible', name: 'Nano Emulsified Lemonade', price: 5, desc: '200mg - 25 Flavors', img: 'attached_assets/image_1767808813355.png', soldOut: true},
-        {cat: 'edible', name: 'THC Gallon', price: 50, desc: '10,000mg Nano Bulk', img: 'attached_assets/image_1767808880312.png'},
-        {cat: 'edible', name: 'Freeze Pops', price: 5, desc: '600mg - Various Flavors', img: 'attached_assets/image_1767808915365.png', soldOut: true},
+        {cat:'edible', name:'Deja Vu Muddy Buddies', price:5, desc:'1000mg', img:'assets/muddy-buddies.png'},
+        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Bulk', img:'assets/gallon.png'},
+        {cat:'edible', name:'Cheez-Its', price:5, desc:'Sold Out', img:'assets/cheez-its.png', soldOut:true},
+        {cat:'edible', name:'Full Spectrum PB', price:15, desc:'Sold Out', img:'assets/pb.png', soldOut:true},
+        {cat:'edible', name:'Wildflower Honey', price:15, desc:'Sold Out', img:'assets/honey.png', soldOut:true},
 
         // NIC & PREROLLS
-        {cat: 'nic', name: 'Geek Bar 25k', price: 40, desc: 'Disposable Nicotine', img: 'attached_assets/image_1767809278081.png'},
-        {cat: 'nic', name: 'Geek Bar 15k', price: 30, desc: 'Disposable Nicotine', img: 'attached_assets/image_1767809278081.png'},
-        {cat: 'nic', name: 'Adjust 40k Mycool', price: 40, desc: 'Disposable Nicotine', img: 'attached_assets/image_1767809271762.png'},
-        {cat: 'nic', name: 'Airis Neo 40k', price: 40, desc: 'Disposable Nicotine', img: 'attached_assets/image_1767809283893.png'},
-        {cat: 'nic', name: 'Craze BC7000', price: 25, desc: 'Disposable Nicotine', img: 'attached_assets/image_1767809290471.png'},
-        {cat: 'nic', name: 'Premium Preroll', price: 5, desc: '1g Pre-roll', img: 'attached_assets/image_1767809044463.png'},
-        {cat: 'nic', name: 'Coastal Maine Preroll', price: 10, desc: '1g Dispensary Quality', img: 'attached_assets/image_1767809128104.png'}
+        {cat:'nic', name:'BC800', price:35, desc:'Disposable Nic', img:'assets/bc800.png'},
+        {cat:'nic', name:'Coastal Maine Preroll', price:10, desc:'1g Dispensary', img:'assets/coastal.png'},
+        {cat:'nic', name:'Premium Preroll', price:5, desc:'1g House Pre-roll', img:'assets/premium.png'},
+        {cat:'nic', name:'Geek Bar 25k', price:40, desc:'Disposable Nic', img:'assets/geekbar.png'},
+        {cat:'nic', name:'Adjust 40k Mycool', price:40, desc:'Disposable Nic', img:'assets/adjust.png'}
     ];
 
-    let cart = [];
-    let total = 0;
-
-    products.forEach(p => {
-        let card = `<div class="product-card ${p.soldOut ? 'sold-out' : ''}">
-            ${p.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
-            ${p.img ? `<img src="${p.img}" style="width:100%; height:150px; object-fit:cover; border-radius:8px; margin-bottom:10px;">` : ''}
-            <div><p class="name">${p.name}</p><p class="desc">${p.desc}</p></div>
-            <div class="price-row">`;
-        
-        if (p.options) {
-            card += `<div class="options-grid">`;
-            p.options.forEach(opt => {
-                card += `<button class="opt-btn" onclick="addToCart('${p.name} (${opt.n})', ${opt.p})">${opt.n}<br>$${opt.p}</button>`;
-            });
-            card += `</div>`;
-        } else {
-            card += `<span class="price">$${p.price}</span>
-                     <button class="add-btn" onclick="addToCart('${p.name}', ${p.price})">+ Add</button>`;
-        }
-        
-        card += `</div></div>`;
-        document.getElementById(p.cat + '-grid').innerHTML += card;
-    });
-
-    function addToCart(name, price) {
-        cart.push({name, price});
-        total += price;
-        document.getElementById('total').innerText = total;
-        updatePreview();
-    }
-
-    function updatePreview() {
-        if(cart.length === 0) return;
-        let lastItems = cart.slice(-1).map(i => i.name);
-        document.getElementById('cart-preview').innerText = "✅ Added " + lastItems + "!";
-    }
-
-    function copyOrder(type) {
-        const min = type === 'Delivery' ? 60 : 30;
-        if (total < min) {
-            alert(`Minimum order for ${type} is $${min}. Your bag only has $${total}`);
-            return;
-        }
-        let itemCounts = {};
-        cart.forEach(item => { itemCounts[item.name] = (itemCounts[item.name] || 0) + 1; });
-        
-        let msg = `BTOWNGAS ORDER (${type.toUpperCase()}):\n--------------------\n`;
-        for (const [name, count] of Object.entries(itemCounts)) {
-            msg += count + "x " + name + "\n";
-        }
-        msg += "--------------------\nTOTAL: $" + total;
-        
-        navigator.clipboard.writeText(msg).then(() => {
-            alert(`🔥 ${type.toUpperCase()} LIST COPIED!\n\nNOW DO THIS:\n1. SCREENSHOT your total.\n2. Paste the list to me on Snapchat with the pic!`);
+    function init() {
+        products.forEach(p => {
+            const grid = document.getElementById(p.cat + '-grid');
+            if(!grid) return;
+            const card = document.createElement('div');
+            card.className = `product-card ${p.soldOut ? 'sold-out' : ''}`;
+            card.innerHTML = `
+                ${p.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
+                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'" style="width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
+                <p style="margin:0; font-weight:bold; font-size:1rem;">${p.name}</p>
+                <p style="color:#888; font-size:0.75rem; margin:4px 0 12px 0;">${p.desc}</p>
+                ${p.options ? `<div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">${p.options.map(o => `<button class="opt-btn" onclick="add('${p.name} (${o.n})', ${o.p})">${o.n}<br>$${o.p}</button>`).join('')}</div>` : 
+                `<div style="display:flex; justify-content:space-between; align-items:center;"><span class="price">$${p.price}</span><button class="add-btn" onclick="add('${p.name}', ${p.price})">+ Add</button></div>`}`;
+            grid.appendChild(card);
         });
     }
+    let cart = []; let total = 0;
+    function add(n, p) { cart.push(n); total += p; document.getElementById('total').innerText = total; document.getElementById('cart-preview').innerText = "✅ Added " + n; }
+    function copyOrder() {
+        if(cart.length === 0) return;
+        navigator.clipboard.writeText(`ORDER:\n` + cart.join('\n') + `\nTOTAL: $${total}`);
+        alert("Copied! Paste on Snap.");
+    }
+    window.onload = init;
 </script>
 </body>
 </html>
