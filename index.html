@@ -8,6 +8,7 @@
         :root { --primary: #1b3d16; --accent: #2ecc71; --bg: #0a0a0a; --card: #151515; --text: #ffffff; --snap: #e6e300; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
         header { text-align: center; padding: 40px 20px; border-bottom: 2px solid var(--primary); background: linear-gradient(180deg, #1b3d16 0%, #0a0a0a 100%); }
+        .min-order { color: var(--accent); font-weight: bold; display: block; margin-top: 10px; font-size: 0.8rem; }
         .container { max-width: 1000px; margin: auto; padding: 20px; }
         .category-header { background: var(--primary); padding: 12px; border-radius: 8px; margin: 30px 0 15px 0; font-weight: 800; border-left: 5px solid var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
@@ -28,22 +29,18 @@
 
 <header>
     <h1>BtownGas</h1>
-    <div style="color: var(--accent); font-weight: bold; margin-top: 10px; font-size: 0.8rem;">Delivery: $60+ | Pickup: $30+</div>
+    <span class="min-order">Delivery: $60+ | Pickup: $30+</span>
 </header>
 
 <div class="container">
     <div class="category-header">🌸 Flower ($130oz)</div>
     <div id="flower-grid" class="grid"></div>
-
     <div class="category-header">🛒 Carts & Disposables</div>
     <div id="cart-grid" class="grid"></div>
-
     <div class="category-header">🍯 Concentrates</div>
     <div id="concentrate-grid" class="grid"></div>
-
     <div class="category-header">🍬 Edibles</div>
     <div id="edible-grid" class="grid"></div>
-
     <div class="category-header">🚬 Nic & Prerolls</div>
     <div id="nic-grid" class="grid"></div>
 </div>
@@ -58,30 +55,28 @@
 
 <script>
     const products = [
-        // FLOWER -
-        {cat:'flower', name:'Grape Gas', desc:'Hybrid', img:'assets/grape-gas.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'Cream Smoothie', desc:'Hybrid', img:'assets/cream-smoothie.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'White Walker', desc:'Hybrid', img:'assets/white-walker.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'Acai Berry', desc:'Hybrid', img:'assets/acai-berry.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'Blue Lobster', desc:'Indoor', img:'assets/blue-lobster.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'Animal Cookies', desc:'Hybrid', img:'assets/animal-cookies.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
-        {cat:'flower', name:'Frozen Cherries', desc:'Hybrid', img:'assets/frozen-cherries.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+    // FLOWER - Using the 4-button grid layout
+    {cat: 'flower', name: 'Grape Gas', desc: 'Hybrid ($130oz)', img: 'assets/grape-gas.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+    {cat: 'flower', name: 'Cream Smoothie', desc: 'Hybrid ($130oz)', img: 'assets/cream-smoothie.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+    {cat: 'flower', name: 'White Walker', desc: 'Hybrid ($130oz)', img: 'assets/white-walker.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+    {cat: 'flower', name: 'Acai Berry', desc: 'Hybrid ($130oz)', img: 'assets/acai-berry.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
+    {cat: 'flower', name: 'Cinderella 99', desc: 'Sativa ($130oz)', img: 'assets/cindy.png', options: [{n: '3.5g', p: 30}, {n: '7g', p: 60}, {n: '14g', p: 100}, {n: 'Oz', p: 130}]},
 
-        // CARTS - Restored
-        {cat:'cart', name:'Whole Melt 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/whole-melt.png'},
-        {cat:'cart', name:'Big Chief 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/big-chief.png'},
+    // CARTS (Only confirmed pictures)
+    {cat: 'cart', name: 'Whole Melt 2g Dual', price: 40, desc: 'Liquid Diamonds', img: 'assets/whole-melt.png'},
+    {cat: 'cart', name: 'Big Chief 2g Dual', price: 40, desc: 'Liquid Diamonds', img: 'assets/big-chief.png'},
 
-        // CONCENTRATES - Restored
-        {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Extract', img:'assets/sugars.png'},
-        {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Extract', img:'assets/badders.png'},
+    // CONCENTRATES
+    {cat: 'concentrate', name: 'Maine Live Sugars', price: 35, desc: 'Premium Extract', img: 'assets/sugars.png'},
+    {cat: 'concentrate', name: 'Maine Live Badders', price: 40, desc: 'Premium Extract', img: 'assets/badders.png'},
 
-        // EDIBLES - Restored
-        {cat:'edible', name:'Deja Vu Muddy Buddies', price:5, desc:'1000mg', img:'assets/muddy-buddies.png'},
-        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Nano', img:'assets/gallon.png'},
+    // EDIBLES
+    {cat: 'edible', name: 'Deja Vu Muddy Buddies', price: 5, desc: '1000mg', img: 'assets/muddy-buddies.png'},
+    {cat: 'edible', name: 'THC Gallon', price: 50, desc: '10,000mg Nano', img: 'assets/gallon.png'},
 
-        // NIC & PREROLLS - Restored
-        {cat:'nic', name:'BC800', price:35, desc:'Disposable Nic', img:'assets/bc800.png'},
-        {cat:'nic', name:'Coastal Maine Preroll', price:10, desc:'1g Dispensary', img:'assets/coastal.png'}
+    // NIC & PREROLLS
+    {cat: 'nic', name: 'BC800', price: 35, desc: 'Disposable Nic', img: 'assets/bc800.png'},
+    {cat: 'nic', name: 'Coastal Maine Preroll', price: 10, desc: '1g Dispensary', img: 'assets/coastal.png'}
     ];
 
     function init() {
