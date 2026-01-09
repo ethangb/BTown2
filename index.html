@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BtownGas | Full Menu</title>
+    <title>BtownGas | Menu</title>
     <style>
         :root { --primary: #1b3d16; --accent: #2ecc71; --bg: #0a0a0a; --card: #151515; --text: #ffffff; --snap: #e6e300; }
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 160px; }
@@ -14,9 +14,9 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
         .product-card { background: var(--card); border-radius: 12px; padding: 15px; border: 1px solid #222; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
         
-        /* 4-BUTTON FLOWER GRID */
+        /* 4-BUTTON GRID FOR FLOWER */
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
-        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        .opt-btn { background: #333; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; }
         .opt-btn:hover { background: var(--accent); color: #000; }
         
         .price { font-size: 1.4rem; color: var(--accent); font-weight: 800; }
@@ -55,57 +55,19 @@
 
 <script>
     const products = [
-        // FLOWER - No Cinderella 99, only items with pictures
+        // FLOWER - Only items with working pictures
         {cat:'flower', name:'Grape Gas', desc:'Hybrid', img:'assets/grape-gas.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'Cream Smoothie', desc:'Hybrid', img:'assets/cream-smoothie.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'White Walker', desc:'Hybrid', img:'assets/white-walker.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
         {cat:'flower', name:'Acai Berry', desc:'Hybrid', img:'assets/acai-berry.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Blue Lobster', desc:'Indoor', img:'assets/blue-lobster.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Animal Cookies', desc:'Hybrid', img:'assets/animal-cookies.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
+        {cat:'flower', name:'Frozen Cherries', desc:'Hybrid', img:'assets/frozen-cherries.png', options:[{n:'3.5g',p:30},{n:'7g',p:60},{n:'14g',p:100},{n:'Oz',p:130}]},
 
-        // CARTS - Only items with pictures
+        // CARTS
         {cat:'cart', name:'Whole Melt 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/whole-melt.png'},
         {cat:'cart', name:'Big Chief 2g Dual', price:40, desc:'Liquid Diamonds', img:'assets/big-chief.png'},
 
         // CONCENTRATES
-        {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Premium Extract', img:'assets/sugars.png'},
-        {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Premium Extract', img:'assets/badders.png'},
-
-        // EDIBLES
-        {cat:'edible', name:'Deja Vu Muddy Buddies', price:5, desc:'1000mg', img:'assets/muddy-buddies.png'},
-        {cat:'edible', name:'THC Gallon', price:50, desc:'10,000mg Nano', img:'assets/gallon.png'},
-
-        // NIC & PREROLLS
-        {cat:'nic', name:'BC800', price:35, desc:'Disposable Nic', img:'assets/bc800.png'},
-        {cat:'nic', name:'Coastal Maine Preroll', price:10, desc:'1g Dispensary', img:'assets/coastal.png'}
-    ];
-
-    function init() {
-        products.forEach(p => {
-            const grid = document.getElementById(p.cat + '-grid');
-            if(!grid) return;
-            const card = document.createElement('div');
-            card.className = `product-card`;
-            card.innerHTML = `
-                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'" style="width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
-                <p style="margin:0; font-weight:bold; font-size:1rem;">${p.name}</p>
-                <p style="color:#888; font-size:0.75rem; margin:4px 0 12px 0;">${p.desc}</p>
-                ${p.options ? `<div class="options-grid">${p.options.map(o => `<button class="opt-btn" onclick="add('${p.name} (${o.n})', ${o.p})">${o.n}<br>$${o.p}</button>`).join('')}</div>` : 
-                `<div style="display:flex; justify-content:space-between; align-items:center;"><span class="price">$${p.price}</span><button class="add-btn" onclick="add('${p.name}', ${p.price})">+ Add</button></div>`}`;
-            grid.appendChild(card);
-        });
-    }
-
-    let cart = []; let total = 0;
-    function add(n, p) { 
-        cart.push(n); total += p; 
-        document.getElementById('total').innerText = total; 
-        document.getElementById('cart-preview').innerText = "✅ Added " + n; 
-    }
-    function copyOrder() {
-        if(cart.length === 0) return;
-        navigator.clipboard.writeText(`ORDER:\n` + cart.join('\n') + `\nTOTAL: $${total}`);
-        alert("Copied! Paste on Snap.");
-    }
-    window.onload = init;
-</script>
-</body>
-</html>
+        {cat:'concentrate', name:'Maine Live Sugars', price:35, desc:'Extract', img:'assets/sugars.png'},
+        {cat:'concentrate', name:'Maine Live Badders', price:40, desc:'Extract', img:'assets/badders.png'},
